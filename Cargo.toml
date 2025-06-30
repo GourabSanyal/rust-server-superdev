@@ -1,0 +1,6 @@
+[package]
+name = "rust-server-superdev"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
