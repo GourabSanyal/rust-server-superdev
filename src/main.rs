@@ -9,7 +9,7 @@ use tower_http::cors::{Any, CorsLayer};
 use std::env;
 
 // Base URL for the deployed API
-pub const BASE_URL: &str = "https://superdev-assignment-production-f39d.up.railway.app";
+pub const BASE_URL: &str = "https://rust-server-superdev.onrender.com";
 
 mod utils;
 use utils::{
