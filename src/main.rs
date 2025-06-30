@@ -11,7 +11,7 @@ mod utils;
 use utils::{
     generate_keypair, create_token, mint_token, sign_message, verify_message, send_sol, send_token,
     CreateTokenRequest, MintTokenRequest, SignMessageRequest, VerifyMessageRequest, SendSolRequest,
-    SendTokenRequest, ErrorResponse
+    SendTokenRequest
 };
 
 #[tokio::main]
@@ -23,7 +23,7 @@ async fn main() {
 
     let app = Router::new()
         .route("/", get(|| async { "Hello, World!" }))
-        .route("/generateKeypair", get(handle_generate_keypair))
+        .route("/keypair", get(handle_generate_keypair))
         .route("/token/create", post(handle_create_token))
         .route("/token/mint", post(handle_mint_token))
         .route("/message/sign", post(handle_sign_message))
