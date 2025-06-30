@@ -6,6 +6,10 @@ use axum::{
 };
 use tokio::net::TcpListener;
 use tower_http::cors::{Any, CorsLayer};
+use std::env;
+
+// Base URL for the deployed API
+pub const BASE_URL: &str = "https://superdev-assignment-production-f39d.up.railway.app";
 
 mod utils;
 use utils::{
@@ -32,11 +36,15 @@ async fn main() {
         .route("/send/token", post(handle_send_token))
         .layer(cors);
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
+    // Get port from environment variable or use 3000 as default
+    let port = env::var("PORT").unwrap_or_else(|_| "3000".to_string());
+    let addr = format!("0.0.0.0:{}", port);
+    
+    let listener = TcpListener::bind(&addr)
         .await
         .unwrap();
 
-    println!("Server is running on http://localhost:3000");
+    println!("Server is running on http://{}", addr);
 
     axum::serve(listener, app).await.unwrap();
 }
